@@ -1169,8 +1169,7 @@ class Modman_Resource_Remover{
      */
     private function isWin()
     {
-        $sPhpOs = strtolower(PHP_OS);
-        return strpos($sPhpOs, 'win') !== false;
+        return (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN');
     }
 
     /**
