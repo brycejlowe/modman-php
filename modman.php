@@ -805,9 +805,10 @@ class Modman_Command_Create {
      * @return bool true if directory is empty (broken symlinks count as empty)
      */
     private function isDirectoryEmpty($sDirectoryPath){
-        if (false === @readlink($sDirectoryPath)) {
+        if (is_link($sDirectoryPath) && @readlink($sDirectoryPath) === false) {
             return true;
         }
+        
         $aCurrentDirectoryListing = scandir($sDirectoryPath);
         return count($aCurrentDirectoryListing) <= 2;
     }
